@@ -1,0 +1,59 @@
+{
+  "elements": [{
+    "type": "element",
+    "name": "components",
+    "attributes": {
+      "defaultWindow": "main"
+    },
+    "elements": [{
+      "type": "element",
+      "name": "windows",
+      "elements": [{
+        "type": "element",
+        "name": "window",
+        "attributes": {
+          "name": "main"
+        },
+        "elements": [{
+          "type": "element",
+          "name": "stack-panel",
+          "attributes": {
+            "orientation": "vertical"
+          },
+          "elements": [{
+              "type": "element",
+              "name": "header",
+              "elements": [{
+                "type": "text",
+                "text": "Title of the window"
+              }]
+            },
+            {
+              "type": "element",
+              "name": "para",
+              "elements": [{
+                "type": "text",
+                "text": "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolore impedit corrupti laboriosam molestiae ab ipsa enim, error ullam. Labore asperiores tempore illo animi distinctio recusandae quae pariatur illum voluptas!\n        "
+              }]
+            },
+            {
+              "type": "element",
+              "name": "para",
+              "elements": [{
+                "type": "text",
+                "text": "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolore impedit corrupti laboriosam molestiae ab ipsa enim, error ullam. Labore asperiores tempore illo animi distinctio recusandae quae pariatur illum voluptas!\n        "
+              }]
+            },
+            {
+              "type": "element",
+              "name": "image",
+              "attributes": {
+                "src": "http://placeimg.com/480/640/any"
+              }
+            }
+          ]
+        }]
+      }]
+    }]
+  }]
+}
