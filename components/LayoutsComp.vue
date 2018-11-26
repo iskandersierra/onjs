@@ -1,7 +1,7 @@
 <template>
   <div class="layouts-component">
-    <DynamicComp
-      :layouts="layouts"
+    <DynamicComp 
+      :layouts="layouts" 
       :content="window"/>
   </div>
 </template>
@@ -15,30 +15,37 @@ export default {
 
   data() {
     return {
-      defaultWindow: null,
       window: null
     }
   },
 
-  methods: {
-    loadContent() {
-      if (this.layouts) {
-        this.defaultWindow = xpath(this.layouts, '@defaultWindow')[0] || 'main'
-
-        const isDefault = w =>
-          xpath(w, '@name')[0] === this.defaultWindow ? [w] : []
-
-        this.window = xpath(this.layouts, 'windows', 'window', isDefault)[0]
-      } else {
-        this.defaultWindow = null
-        this.window = null
+  computed: {
+    attributes() {
+      return {
+        defaultWindow: this.attrs.defaultWindow || 'main'
       }
+    }
+  },
+
+  methods: {
+    createContent() {
+      this.createComp()
+      const defaultWindow = this.attributes.defaultWindow
+      const isDefault = w => (xpath(w, '@name')[0] === defaultWindow ? [w] : [])
+      this.window = xpath(this.layouts, 'windows', 'window', isDefault)[0]
+    },
+    removeContent() {
+      this.window = null
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.layouts-component
-  height 100%
+.layouts-component {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
 </style>

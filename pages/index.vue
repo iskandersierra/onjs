@@ -44,18 +44,22 @@ export default {
     <window name="main">
       <stack-panel orientation="vertical">
         <header>Title of the window</header>
+        <header size="2">Title of the window</header>
+        <header size="3">Title of the window</header>
+        <header size="4">Title of the window</header>
+        <header size="5">Title of the window</header>
+        <header size="6">Title of the window</header>
         <para>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolore impedit corrupti laboriosam molestiae ab ipsa enim, error ullam. Labore asperiores tempore illo animi distinctio recusandae quae pariatur illum voluptas!
         </para>
         <para>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolore impedit corrupti laboriosam molestiae ab ipsa enim, error ullam. Labore asperiores tempore illo animi distinctio recusandae quae pariatur illum voluptas!
         </para>
-        <image src="http://placeimg.com/480/640/any"/>
+        <image src="http://placeimg.com/480/640/any" width="480" height="640"/>
       </stack-panel>
     </window>
   </windows>
-</layouts>
-`
+</layouts>`
     }
   },
   computed: {

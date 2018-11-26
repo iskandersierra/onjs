@@ -13,12 +13,16 @@
 
 <script>
 import xpath from '~/services/xpath'
+const sufix = '-comp'
 
 export default {
   components: {
-    layouts: () => import('./LayoutsComp'),
-    window: () => import('./WindowComp'),
-    'stack-panel': () => import('./StackPanelComp')
+    ['layouts' + sufix]: () => import('./LayoutsComp'),
+    ['window' + sufix]: () => import('./WindowComp'),
+    ['stack-panel' + sufix]: () => import('./StackPanelComp'),
+    ['header' + sufix]: () => import('./HeaderComp'),
+    ['para' + sufix]: () => import('./ParaComp'),
+    ['image' + sufix]: () => import('./ImageComp')
   },
 
   props: {
@@ -54,11 +58,12 @@ export default {
   methods: {
     loadContent() {
       if (this.layouts && this.content) {
-        this.componentType = xpath(this.content, 'name()')[0]
+        let componentType = xpath(this.content, 'name()')[0]
+        if (componentType) componentType = componentType + sufix
+        this.componentType = componentType
       } else {
         this.componentType = null
       }
-      console.log('Loading content to ', this.componentType)
     }
   }
 }

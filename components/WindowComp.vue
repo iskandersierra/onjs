@@ -34,4 +34,9 @@ export default {
 <style lang="stylus" scoped>
 .window-component
   height 100%
+  padding 1rem
+  width 100%
+
+  @media screen and (min-width: 960px)
+    width: 960px
 </style>

@@ -6,40 +6,25 @@
       :key="index"
       :layouts="layouts"
       :content="child"/>
-    <component :is="'hr'"/>
   </div>
 </template>
 
 <script>
 import xpath from '~/services/xpath'
-import comp from './component-mixin'
+import { layoutComp } from './component-mixin'
 
 export default {
-  mixins: [comp],
-
-  data() {
-    return {
-      children: [],
-      orientation: null
-    }
-  },
+  mixins: [layoutComp],
 
   computed: {
     classes() {
       return {
-        [this.orientation || 'vertical']: true
+        [this.attributes.orientation]: true
       }
-    }
-  },
-
-  methods: {
-    loadContent() {
-      if (this.content) {
-        this.children = xpath(this.content, '*')
-        this.orientation = xpath(this.content, '@orientation')[0]
-      } else {
-        this.children = []
-        this.orientation = null
+    },
+    attributes() {
+      return {
+        orientation: this.attrs.orientation || 'vertical'
       }
     }
   }
@@ -47,6 +32,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.stack-panel
+.stack-panel-component
   height 100%
+  display flex
+  flex-direction column
+  justify-content start
+  align-items stretch
+  @.horizontal
+    flex-direction row
 </style>
