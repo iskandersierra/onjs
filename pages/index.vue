@@ -17,7 +17,8 @@
       </div>
     </div>
     <div
-      :class="windowPanelClass">
+      :class="windowPanelClass"
+      @click="layoutClick">
       <DynamicComp
         :layouts="layouts"
         :content="layouts"/>
@@ -43,12 +44,7 @@ export default {
   <windows>
     <window name="main">
       <stack-panel orientation="vertical">
-        <header>Title of the window</header>
-        <header size="2">Title of the window</header>
         <header size="3">Title of the window</header>
-        <header size="4">Title of the window</header>
-        <header size="5">Title of the window</header>
-        <header size="6">Title of the window</header>
         <para>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolore impedit corrupti laboriosam molestiae ab ipsa enim, error ullam. Labore asperiores tempore illo animi distinctio recusandae quae pariatur illum voluptas!
         </para>
@@ -82,6 +78,9 @@ export default {
     createLayout() {
       const xml = xml2js(this.inputText, { compact: false })
       this.layouts = xpath(xml, 'layouts')[0]
+    },
+    layoutClick() {
+      this.layouts = null
     }
   }
 }
@@ -90,30 +89,37 @@ export default {
 <style lang="stylus" scoped>
 .index-container
   min-height 100vh
-  display flex
-  flex-direction column
-  justify-content space-between
-  align-items stretch
+  position relative
+  perspective 200vmax
 
 .main-panel
   min-height 100vh
-  position relative
+  position absolute
+  left 0
+  top 0
+  right 0
   display flex
   flex-direction column
   justify-content space-between
   align-items stretch
-  &.hidden
-    display none
-
+  transition transform .5s ease
+  backface-visibility hidden
+  transform-style preserve-3d
   > *
     flex-grow 0
 
 .input-panel
   padding 1rem
-  background-color #DEE
+  background-color #c8fff4
+  transform rotateY(0deg)
+  &.hidden
+    transform rotateY(180deg)
 
 .window-panel
-  background-color #FFF
+  background-color #dbb2ff
+  transform rotateY(360deg)
+  &.hidden
+    transform rotateY(180deg)
 
 .textarea
   height 100%
